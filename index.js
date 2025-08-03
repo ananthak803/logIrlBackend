@@ -9,4 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/user',require('./routes/user'));
 app.use('/api/logs',require('./routes/log'))
+app.get('/',(req,res)=>{
+    res.send("live......");
+})
 app.listen(port,console.log('server running on port ',port))
