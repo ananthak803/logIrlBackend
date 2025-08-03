@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+
 // POST /api/logs/addLog
 router.post('/addLog', async (req, res) => {
   const authHeader = req.headers.authorization;
@@ -14,7 +15,7 @@ router.post('/addLog', async (req, res) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findById(decoded.id); // ✅ works only if payload is { id: user.id }
+    const user = await User.findById(decoded.id); 
 
     if (!user) return res.status(404).json({ message: 'User not found' });
 
@@ -74,8 +75,3 @@ router.get('/getLogs', async (req, res) => {
 });
 
 module.exports = router;
-
-
-// "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OGVlNmFlNGJmYzZjODNjZDE2MDkzMiIsImlhdCI6MTc1NDE5NTYzMH0.xOBA5QHXpjmk5aZaHGpWqwNc-ciQ3xI4UUgvJGBFQrc"
-
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OGVlNmFlNGJmYzZjODNjZDE2MDkzMiIsImlhdCI6MTc1NDE5NTY1MSwiZXhwIjoxNzU0MjgyMDUxfQ.uHHUJ-EpzMRurUFCLOiEbPKRbFUJxgbGaK12aJ5YtxI

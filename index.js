@@ -2,7 +2,6 @@ const express = require('express');
 const app=express();
 const connectDB=require('./connection')
 require('dotenv').config();
-const userRoutes=require('./routes/user');
 const port=process.env.PORT;
 
 connectDB(process.env.MONGO_URI).then(()=>console.log('connected to databse')).catch((err)=>console.log(err));
