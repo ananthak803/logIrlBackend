@@ -3,6 +3,8 @@ const app=express();
 const connectDB=require('./connection')
 require('dotenv').config();
 const port=process.env.PORT;
+const cors = require('cors');
+app.use(cors());
 
 connectDB(process.env.MONGO_URI).then(()=>console.log('connected to databse')).catch((err)=>console.log(err));
 app.use(express.json());
