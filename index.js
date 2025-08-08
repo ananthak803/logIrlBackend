@@ -6,7 +6,14 @@ const port=process.env.PORT;
 const cors = require('cors');
 app.use(cors());
 
-connectDB(process.env.MONGO_URI).then(()=>console.log('connected to databse')).catch((err)=>console.log(err));
+connectDB(process.env.MONGO_URI)
+  .then(() => console.log('Connected to MongoDB Atlas'))
+  .catch((err) => {
+    console.error('Failed to connect to MongoDB Atlas');
+    console.error(err);
+  });
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/user',require('./routes/user'));
